@@ -3,7 +3,14 @@
 ## Overview
 
 This script (`deepeval_test_semantic_similarity.py`) is designed to test and evaluate the responses of a Language Model (LLM) using the OpenAI API and custom semantic similarity comparisons.
-The similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
+
+**Similarity Threshold**
+
+In this test, the similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
+
+**Context**
+
+To assess the model's adaptability, you can set the context to different domains like "Scientific," "Historical," "Technical," or "Humorous," which tests how well the model handles various subject matters. For specialized fields, use contexts like "Customer Support," "Education," or "Medical" to evaluate performance. Additionally, by changing the context to reflect "Western," "Eastern," or "Global" viewpoints, you can examine the model’s ability to adapt to different cultural nuances. This approach helps you gain insights into the model's versatility and effectiveness across diverse scenarios.
 
 Important: The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. This includes the model weights, configuration files, and tokenizer data. This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so subsequent runs should be faster.
 
