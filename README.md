@@ -64,10 +64,10 @@ export OPENAI_API_KEY="your-api-key-here"
 
 ## 4. Create the Script
 
-Create a new Python file, paste the code, and save it as `deepeval_test.py`:
+Create a new Python file, paste the code, and save it as `deepeval_test_semantic_similarity.py`:
 
 ```bash
-nano deepeval_test.py
+nano deepeval_test_semantic_similarity.py
 ```
 
 ## 5. Run the Script
@@ -75,7 +75,7 @@ nano deepeval_test.py
 Run the script using Python:
 
 ```bash
-python3 deepeval_test.py
+python3 deepeval_test_semantic_similarity.py
 ```
 
 ## 6. View Results
