@@ -1,3 +1,5 @@
+# simulate a pass with hardcoded completion
+
 from openai import OpenAI  # Import the OpenAI class to interact with the OpenAI API
 import os  # Import the os module to access environment variables
 from deepeval.test_case import LLMTestCase  # Import the LLMTestCase class from deepeval for setting up the test case
@@ -62,4 +64,3 @@ report = {
 print("Test Report:")
 for key, value in report.items():
     print(f"{key}: {value}")
-
