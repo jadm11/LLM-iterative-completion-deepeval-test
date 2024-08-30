@@ -4,6 +4,8 @@
 
 This script evaluates an AI model's response to a specific prompt by comparing it against predefined expected outcomes. The similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
 
+Important: The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. This includes the model weights, configuration files, and tokenizer data. This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so subsequent runs should be faster.
+
 ## Features
 
 ### 1. Library Imports
