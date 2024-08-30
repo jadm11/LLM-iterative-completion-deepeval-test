@@ -2,36 +2,38 @@
 
 ## Overview
 
-This script evaluates an AI model's response to a specific prompt by comparing it against predefined expected outcomes. The similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
+This script (`deepeval_test_semantic_similarity.py`) is designed to test and evaluate the responses of a Language Model (LLM) using the OpenAI API and custom semantic similarity comparisons.
+The similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
 
 Important: The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. This includes the model weights, configuration files, and tokenizer data. This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so subsequent runs should be faster.
 
-## Features
+## Script Overview
 
-### 1. Library Imports
-- Imports necessary modules, including `OpenAI`, `os`, and `LLMTestCase` from `deepeval`.
-- Suppresses warnings to keep the output clean.
+1. **Library Imports**
+   * Imports essential libraries, including `OpenAI`, `os`, and `LLMTestCase` from `deepeval`.
+   * Additionally, imports `SentenceTransformer` and `util` from `sentence_transformers` to handle semantic similarity comparisons.
+   * Warnings are suppressed for cleaner output.
 
-### 2. Client Initialization
-- Initializes the OpenAI client using an API key stored in an environment variable.
+2. **Client Initialization**
+   * The OpenAI client is initialized using an API key stored in an environment variable.
 
-### 3. Fetching Expected Responses
-- Uses `fetch_expected_responses` to call the OpenAI API with a prompt and context, returning model outputs.
+3. **Fetching Expected Responses**
+   * The `fetch_response` function sends a prompt and context to the OpenAI API and retrieves model responses dynamically.
 
-### 4. Defining the Test Case
-- Defines a prompt and manually adds additional expected responses for comprehensive testing.
+4. **Defining the Test Case**
+   * A prompt ("Why did the chicken cross the road?") is defined, and multiple expected responses are fetched to be used in comparison.
 
-### 5. Simulating Model Output
-- Simulates the model's response.
+5. **Simulating Model Output**
+   * The same `fetch_response` function is used to simulate the model's actual response.
 
-### 6. Test Case Creation
-- Creates an `LLMTestCase` object encapsulating all necessary information for evaluation.
+6. **Test Case Creation**
+   * An `LLMTestCase` object is not explicitly created; instead, a custom similarity function (`semantic_similarity`) is defined to directly compare the actual and expected responses.
 
-### 7. Evaluation
-- Manually checks if the model’s output matches any of the expected responses.
+7. **Evaluation**
+   * The custom `semantic_similarity` function compares the model's output to the expected responses using cosine similarity of embeddings.
 
-### 8. Reporting
-- Generates a simple report showing the input, expected output, actual output, and the test result (Pass/Fail).
+8. **Reporting**
+   * A simple report is generated, displaying the input, expected responses, actual output, and whether the test passed or failed.
 
 # Instructions to Run the Script from Scratch in a BASH Shell
 
