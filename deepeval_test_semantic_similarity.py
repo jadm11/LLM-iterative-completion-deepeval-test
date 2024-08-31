@@ -36,7 +36,9 @@ def fetch_response(prompt, context):
 
 # Function to compute semantic similarity between actual output and expected outputs
 # Uses cosine similarity between embeddings to evaluate how closely the actual output matches the expected outputs.
-def semantic_similarity(actual_output, expected_outputs, threshold=0.4):
+def semantic_similarity(actual_output, expected_outputs, threshold=None):
+    if threshold is None:
+        threshold = 0.4  # Default value if no threshold is provided
     actual_embedding = embedding_model.encode(actual_output, convert_to_tensor=True)  # Convert the actual output to an embedding
     expected_embeddings = embedding_model.encode(expected_outputs, convert_to_tensor=True)  # Convert expected outputs to embeddings
     cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)  # Compute cosine similarity scores
@@ -93,8 +95,8 @@ class CustomSemanticSimilarityTest(unittest.TestCase):
 
 # Configuration settings for the test
 context = "Scientific"  # Context provided to the model to influence its response
-use_dynamic_responses = False  # Toggle for using dynamic or hardcoded expected responses
-threshold = 0.1  # Similarity threshold for passing the test
+use_dynamic_responses = True  # Toggle for using dynamic or hardcoded expected responses
+threshold = 0.6  # Similarity threshold for passing the test
 prompt = "Why did the chicken cross the road?"  # The prompt provided to the model
 
 # Generate expected responses based on the configuration
