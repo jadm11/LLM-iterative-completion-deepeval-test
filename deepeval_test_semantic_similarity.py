@@ -54,7 +54,12 @@ else:
 model_completion = fetch_response(prompt, context)
 
 # Define a custom similarity function 
-def semantic_similarity(actual_output, expected_outputs, threshold=0.3):
+# Define a custom similarity function 
+# In this test, the similarity threshold determines how closely the model's output must match the expected responses in # meaning. 
+# By adjusting this threshold, you can control the strictness of the test. 
+# A higher threshold (e.g., 0.8) requires very close matches, while a # lower threshold (e.g., 0.7) allows for more variation in wording. 
+# Lowering the threshold might make the test pass when the outputs are similar in intent but # differ in phrasing, ensuring meaningful yet flexible evaluation.
+def semantic_similarity(actual_output, expected_outputs, threshold=0.8):
     actual_embedding = embedding_model.encode(actual_output, convert_to_tensor=True)
     expected_embeddings = embedding_model.encode(expected_outputs, convert_to_tensor=True)
     cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)
