@@ -1,5 +1,6 @@
-# The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. This includes the model weights, 
-# configuration files, and tokenizer data. This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so # subsequent runs should be faster.
+# The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. 
+# This includes the model weights, configuration files, and tokenizer data. 
+# This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so subsequent runs should be faster.
 
 from openai import OpenAI
 import os
@@ -54,11 +55,12 @@ else:
 model_completion = fetch_response(prompt, context)
 
 # Define a custom similarity function 
-# In this test, the similarity threshold determines how closely the model's output must match the expected responses in # meaning. 
+# In this test, the similarity threshold determines how closely the model's output must match the expected responses in meaning. 
 # By adjusting this threshold, you can control the strictness of the test. 
-# A higher threshold (e.g., 0.8) requires very close matches, while a # lower threshold (e.g., 0.7) allows for more variation in wording. 
-# Lowering the threshold might make the test pass when the outputs are similar in intent but # differ in phrasing, ensuring meaningful yet flexible evaluation.
-def semantic_similarity(actual_output, expected_outputs, threshold=0.4):
+# A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. 
+# Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation.
+threshold = 0.8  # Define the threshold variable
+def semantic_similarity(actual_output, expected_outputs, threshold=threshold):
     actual_embedding = embedding_model.encode(actual_output, convert_to_tensor=True)
     expected_embeddings = embedding_model.encode(expected_outputs, convert_to_tensor=True)
     cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)
@@ -68,6 +70,8 @@ def semantic_similarity(actual_output, expected_outputs, threshold=0.4):
 passed = semantic_similarity(model_completion, expected_responses)
 
 ###### Report on results
+# Enhanced and optimized report generation with additional context
+
 # ANSI escape codes for color and style formatting
 BOLD = "\033[1m"  # Bold text
 DIM = "\033[2m"  # Dimmed text for separators
@@ -81,10 +85,13 @@ SEPARATOR = f"{DIM}{'-' * 50}{RESET}"  # Separator line with dimmed dashes
 # Choosing the color based on the test result
 result_color = GREEN if passed else RED  # Green for Pass, Red for Fail
 
-# Report formatting
+# Preparing a formatted and elegant report with additional context
 report = (
     f"{BOLD}{BLUE}Test Report{RESET}\n"  # Test Report header in bold blue text
     f"{SEPARATOR}\n"  # Separator line below the header
+    f"{CYAN}Context:{RESET} {BOLD}{context}{RESET}\n"  # Context of the test in bold
+    f"{CYAN}Dynamic Responses Enabled:{RESET} {BOLD}{use_dynamic_responses}{RESET}\n"  # Dynamic responses flag in bold
+    f"{CYAN}Similarity Threshold:{RESET} {BOLD}{threshold}{RESET}\n\n"  # Similarity threshold in bold
     f"{CYAN}Input:{RESET} {BOLD}{prompt}{RESET}\n\n"  # Input label in cyan, followed by the actual input in bold
     f"{CYAN}Expected Responses:{RESET}\n"  # Expected Responses label in cyan
     f"  1. {expected_responses[0]}\n"  # First expected response
@@ -97,7 +104,3 @@ report = (
 
 # Printing the formatted report
 print(report)  # Output the formatted report to the console
-
-
-
-
