@@ -105,7 +105,7 @@ python3 deepeval_test_semantic_similarity.py
 * Actual Output: The model’s response to the input prompt, compared to the expected responses in terms of meaning and relevance.
 * Result: Indicates whether the model’s output met the required criteria, with ✔ Pass meaning it did and ✘ Fail meaning it didn’t.
 
-![Report Output](https://github.com/jadm11/deepeval_test/blob/main/report.png)
+![Report Output](https://github.com/jadm11/deepeval_test/blob/development/report.png)
 Report 1
-![Report Output](https://github.com/jadm11/deepeval_test/blob/main/report-2.png)
+![Report Output](https://github.com/jadm11/deepeval_test/blob/development/report-2.png)
 Report 2
