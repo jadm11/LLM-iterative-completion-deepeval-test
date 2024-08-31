@@ -32,22 +32,29 @@ def fetch_response(prompt, context):
 prompt = "Why did the chicken cross the road?"
 context = "Cultural"
 
-# Fetch expected responses from the API
-expected_responses = [
-    fetch_response(prompt, context),
-    fetch_response(prompt, context),
-    fetch_response(prompt, context)
-]
+# Option to switch between dynamic and hardcoded expected responses
+use_dynamic_responses = False  # Set to False to use hardcoded expected responses
+
+if use_dynamic_responses:
+    # Fetch expected responses from the API
+    expected_responses = [
+        fetch_response(prompt, context),
+        fetch_response(prompt, context),
+        fetch_response(prompt, context)
+    ]
+else:
+    # Use hardcoded expected responses
+    expected_responses = [
+        "To get to the other side.",
+        ("Because its dopaminergic neurons fired synchronously across the synapses of its caudate nucleus, "
+         "triggering motor contractions propelling the organism forward, to a goal predetermined by its hippocampal road mappings.")
+    ]
 
 # Fetch the actual output from the model using the same API call
 model_completion = fetch_response(prompt, context)
 
 # Define a custom similarity function 
-# In this test, the similarity threshold determines how closely the model's output must match the expected responses in # meaning. 
-# By adjusting this threshold, you can control the strictness of the test. 
-# A higher threshold (e.g., 0.8) requires very close matches, while a # lower threshold (e.g., 0.7) allows for more variation in wording. 
-# Lowering the threshold might make the test pass when the outputs are similar in intent but # differ in phrasing, ensuring meaningful yet flexible evaluation.
-def semantic_similarity(actual_output, expected_outputs, threshold=0.2):
+def semantic_similarity(actual_output, expected_outputs, threshold=0.3):
     actual_embedding = embedding_model.encode(actual_output, convert_to_tensor=True)
     expected_embeddings = embedding_model.encode(expected_outputs, convert_to_tensor=True)
     cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)
@@ -62,4 +69,5 @@ print(f"Input: {prompt}")
 print(f"Expected Output: {expected_responses}")
 print(f"Actual Output: {model_completion}")
 print(f"Result: {'Pass' if passed else 'Fail'}")
+
 
