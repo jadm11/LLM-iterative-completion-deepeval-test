@@ -54,7 +54,6 @@ else:
 model_completion = fetch_response(prompt, context)
 
 # Define a custom similarity function 
-# Define a custom similarity function 
 # In this test, the similarity threshold determines how closely the model's output must match the expected responses in # meaning. 
 # By adjusting this threshold, you can control the strictness of the test. 
 # A higher threshold (e.g., 0.8) requires very close matches, while a # lower threshold (e.g., 0.7) allows for more variation in wording. 
