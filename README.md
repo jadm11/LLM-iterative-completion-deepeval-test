@@ -100,4 +100,6 @@ python3 deepeval_test_semantic_similarity.py
 The script will print a test report with the input, expected output, actual output, and test result (Pass/Fail).
 
 ![Report Output](https://github.com/jadm11/deepeval_test/blob/main/report.png)
-Here is a screenshot of the report from the test case run from a shell in Terminator on Ubuntu. This is only an example, it's not pretty, but it works. 
+Report 1
+![Report Output](https://github.com/jadm11/deepeval_test/blob/main/report-2.png)
+Report 2
