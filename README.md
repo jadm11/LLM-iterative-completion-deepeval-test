@@ -1,6 +1,7 @@
 # DeepEval Test Script
 
 ## Overview
+For the article see: https://www.linkedin.com/pulse/testing-ai-models-example-iterative-completion-jacob-adm-yhvpe
 
 This script (`deepeval_test_semantic_similarity.py`) is designed to test and evaluate the responses of a Language Model (LLM) using the OpenAI API and custom semantic similarity comparisons.
 
