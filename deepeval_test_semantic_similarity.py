@@ -30,7 +30,7 @@ def fetch_response(prompt, context):
 # Test Configuration
 context = "Cultural"
 use_dynamic_responses = False  # Option to switch between dynamic and hardcoded expected responses
-threshold = 0.3  # Define the threshold variable
+threshold = 0.4  # Define the threshold variable
 prompt = "Why did the chicken cross the road?" # Input prompt
 
 if use_dynamic_responses:
