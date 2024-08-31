@@ -8,11 +8,11 @@ This script (`deepeval_test_semantic_similarity.py`) is designed to test and eva
 ## Features
 **Similarity Threshold**
 
-In this test, the similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold (line 50), you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
+In this test, the similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold, you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
 
 **Context**
 
-To assess the model's adaptability, you can set the context (line 33) to different domains like "Scientific," "Historical," "Technical," or "Humorous," which tests how well the model handles various subject matters. For specialized fields, use contexts like "Customer Support," "Education," or "Medical" to evaluate performance. Additionally, by changing the context to reflect "Western," "Eastern," or "Global" viewpoints, you can examine the model’s ability to adapt to different cultural nuances. This approach helps you gain insights into the model's versatility and effectiveness across diverse scenarios.
+To assess the model's adaptability, you can set the context to different domains like "Scientific," "Historical," "Technical," or "Humorous," which tests how well the model handles various subject matters. For specialized fields, use contexts like "Customer Support," "Education," or "Medical" to evaluate performance. Additionally, by changing the context to reflect "Western," "Eastern," or "Global" viewpoints, you can examine the model’s ability to adapt to different cultural nuances. This approach helps you gain insights into the model's versatility and effectiveness across diverse scenarios.
 
 **Dynamic vs Static Toggle**
 
