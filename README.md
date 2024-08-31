@@ -8,7 +8,7 @@ This script (`deepeval_test_semantic_similarity.py`) is designed to test and eva
 ## Features
 **Similarity Threshold**
 
-In this test, the similarity threshold determines how closely the model's output must match the expected responses in meaning. By adjusting this threshold, you can control the strictness of the test. A higher threshold (e.g., 0.8) requires very close matches, while a lower threshold (e.g., 0.7) allows for more variation in wording. Lowering the threshold might make the test pass when the outputs are similar in intent but differ in phrasing, ensuring meaningful yet flexible evaluation. Make adjustments and run the test noting the threshold and how a pass or fail can be determined with this change.
+The semantic_similarity function compares the model’s output to expected responses using cosine similarity. The threshold, from 0.0 (no match) to 1.0 (perfect match), controls how strictly the outputs are compared. A higher threshold (e.g., 0.8) demands close alignment, while a lower threshold (e.g., 0.7) allows more variation. Adjusting the threshold lets you balance accuracy and flexibility, defining what passes or fails.
 
 **Context**
 
@@ -97,7 +97,13 @@ python3 deepeval_test_semantic_similarity.py
 
 ## 6. View Results
 
-The script will print a test report with the input, expected output, actual output, and test result (Pass/Fail).
+* Context: Provides the scenario or subject area guiding the model’s response, offering insight into the perspective or background used.
+* Dynamic Responses Enabled: Indicates whether the expected outputs were dynamically generated during the test (True) or predefined (False).
+* Similarity Threshold: Defines the level of precision required for the model’s output to match the expected responses. A higher threshold demands closer alignment in meaning, while a lower one allows for more flexibility.
+* Input: The exact prompt provided to the model, serving as the starting point of the test.
+* Expected Responses: The set of responses against which the model’s actual output is compared, either dynamically generated or fixed.
+* Actual Output: The model’s response to the input prompt, compared to the expected responses in terms of meaning and relevance.
+* Result: Indicates whether the model’s output met the required criteria, with ✔ Pass meaning it did and ✘ Fail meaning it didn’t.
 
 ![Report Output](https://github.com/jadm11/deepeval_test/blob/main/report.png)
 Report 1
