@@ -28,8 +28,8 @@ def fetch_response(prompt, context):
     return response.choices[0].message.content.strip()
 
 # Test Configuration
-context = "Scientific"
-use_dynamic_responses = True  # Option to switch between dynamic and hardcoded expected responses
+context = "Cultural"
+use_dynamic_responses = False  # Option to switch between dynamic and hardcoded expected responses
 threshold = 0.3  # Define the threshold variable
 prompt = "Why did the chicken cross the road?" # Input prompt
 
@@ -50,7 +50,6 @@ else:
 
 # Fetch the actual output from the model using the same API call
 model_completion = fetch_response(prompt, context)
-
 
 # Define a custom similarity function 
 def semantic_similarity(actual_output, expected_outputs, threshold=threshold):
