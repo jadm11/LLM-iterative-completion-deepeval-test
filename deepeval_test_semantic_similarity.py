@@ -15,6 +15,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Initialize the sentence transformer model for semantic similarity
+# https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 # Function to fetch a response from the OpenAI API
@@ -70,8 +71,6 @@ def semantic_similarity(actual_output, expected_outputs, threshold=threshold):
 passed = semantic_similarity(model_completion, expected_responses)
 
 ###### Report on results
-# Enhanced and optimized report generation with additional context
-
 # ANSI escape codes for color and style formatting
 BOLD = "\033[1m"  # Bold text
 DIM = "\033[2m"  # Dimmed text for separators
