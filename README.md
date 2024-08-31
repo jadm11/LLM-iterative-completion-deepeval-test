@@ -13,12 +13,13 @@ In this test, the similarity threshold determines how closely the model's output
 
 To assess the model's adaptability, you can set the context (line 33) to different domains like "Scientific," "Historical," "Technical," or "Humorous," which tests how well the model handles various subject matters. For specialized fields, use contexts like "Customer Support," "Education," or "Medical" to evaluate performance. Additionally, by changing the context to reflect "Western," "Eastern," or "Global" viewpoints, you can examine the model’s ability to adapt to different cultural nuances. This approach helps you gain insights into the model's versatility and effectiveness across diverse scenarios.
 
-*Dynamic vs Static Toggle*
+**Dynamic vs Static Toggle**
+
 This test includes a toggle (use_dynamic_responses) that controls how expected responses are generated:
 
-True: When set to True, the script dynamically generates expected responses using the OpenAI API based on the prompt and context. This allows you to evaluate the model's real-time adaptability and response generation.
+* True: When set to True, the script dynamically generates expected responses using the OpenAI API based on the prompt and context. This allows you to evaluate the model's real-time adaptability and response generation.
 
-False: When set to False, the script uses predefined hardcoded responses. This enables a controlled test environment where the model's output is compared against specific, known answers.
+* False: When set to False, the script uses predefined hardcoded responses. This enables a controlled test environment where the model's output is compared against specific, known answers.
 
 Important: The SentenceTransformer model (which is used for semantic similarity) will be downloaded the first time this is run. This includes the model weights, configuration files, and tokenizer data. This download is necessary only the first time you use the model. Once downloaded, it will be cached locally, so subsequent runs should be faster.
 
