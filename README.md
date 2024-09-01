@@ -73,3 +73,7 @@ This Python tool evaluates the performance of Language Learning Models (LLMs) by
 
 - The evaluation generates a report detailing the context, similarity threshold, cosine similarity scores, and whether the model's output passed the test.
 - A **Pass** indicates that the output met the similarity criteria, while a **Fail** suggests it did not align closely enough with the expected meaning.
+
+### License
+
+This is licensed under the MIT License.
