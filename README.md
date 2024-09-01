@@ -1,4 +1,4 @@
-### README: LLM Evaluation with Semantic Similarity
+### LLM Evaluation with DeepEval and Semantic Similarity
 
 ---
 
