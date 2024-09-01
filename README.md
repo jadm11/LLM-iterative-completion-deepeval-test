@@ -1,3 +1,5 @@
+# Documentation needs an overhaul, this script works well. Clone, configure, run deepeval_test_semantic_similarity.py
+
 # DeepEval Test Script
 
 ## Overview
