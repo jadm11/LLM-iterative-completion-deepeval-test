@@ -1,5 +1,7 @@
 ### LLM Evaluation with DeepEval and Semantic Similarity
 
+Disclaimer:  This script is provided "as is" without any warranty of any kind, either express or implied. Use at your own risk.
+
 - LinkedIn Article: https://www.linkedin.com/pulse/testing-ai-models-example-iterative-completion-jacob-adm-yhvpe/
 - Copy of working script with full logging and comments: https://github.com/jadm11/deepeval_test/blob/698dbc93b2f9c5f526ef9f2de3a5a281867a7968/deepeval_test_semantic_similarity.py
 
