@@ -133,10 +133,13 @@ class CustomLLMEvaluation:
             # Check if the actual output matches the expected output exactly
             llm_test_passed = self.llm_test_case.actual_output.strip() == self.llm_test_case.expected_output.strip()
             
-            # Check if the actual output is semantically similar to any of the expected outputs
+            # Compute semantic similarity
             semantic_passed, cosine_scores = semantic_similarity(self.actual_output, self.expected_responses, self.threshold)
+            
+            # Ensure all scores must be above the threshold to pass
+            semantic_passed = all(score >= self.threshold for score in cosine_scores[0])
 
-            # Determine whether the overall test passed based on either exact match or semantic similarity
+            # Determine whether the overall test passed based on either exact match or strict semantic similarity
             overall_passed = llm_test_passed or semantic_passed
             
             # Generate and print a detailed report of the evaluation
@@ -189,7 +192,7 @@ class CustomLLMEvaluation:
 # Configuration settings for running the evaluation
 context = "Humor"  # Set the context to guide the LLM's response
 use_dynamic_responses = True  # Enable dynamic generation of expected responses
-threshold = 0.7  # Set the similarity threshold for semantic similarity testing
+threshold = 0.5  # Set the similarity threshold for semantic similarity testing
 prompt = "Why did the chicken cross the road?"  # Define the prompt to be tested
 
 # Run the evaluation
