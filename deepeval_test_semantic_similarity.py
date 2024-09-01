@@ -184,9 +184,9 @@ class CustomLLMEvaluation:
             raise  # Re-raise the exception to ensure any issues are properly flagged
 
 # Configuration settings for running the evaluation
-context = "Cultural"  # Set the context to guide the LLM's response
+context = "Humor"  # Set the context to guide the LLM's response
 use_dynamic_responses = True  # Disable dynamic generation of expected responses, using predefined ones instead
-threshold = 0.5  # Set the similarity threshold for semantic similarity testing
+threshold = 0.6  # Set the similarity threshold for semantic similarity testing
 prompt = "Why did the chicken cross the road?"  # Define the prompt to be tested
 
 # Run the evaluation
