@@ -1,6 +1,9 @@
+# Standard Library Imports
 import os  # For interacting with the operating system, particularly for accessing environment variables
 import warnings  # For managing and suppressing warnings that might clutter output
 import logging  # For logging events, errors, and other significant runtime information
+
+# Third-Party Imports
 from openai import OpenAI  # To interact with the OpenAI API, used to generate responses from a language model
 from deepeval.test_case import LLMTestCase  # Import LLMTestCase from the DeepEval package for structured testing of LLM outputs
 from sentence_transformers import SentenceTransformer, util  # For performing semantic similarity checks using embeddings
@@ -185,8 +188,8 @@ class CustomLLMEvaluation:
 
 # Configuration settings for running the evaluation
 context = "Humor"  # Set the context to guide the LLM's response
-use_dynamic_responses = True  # Disable dynamic generation of expected responses, using predefined ones instead
-threshold = 0.6  # Set the similarity threshold for semantic similarity testing
+use_dynamic_responses = True  # Enable dynamic generation of expected responses
+threshold = 0.7  # Set the similarity threshold for semantic similarity testing
 prompt = "Why did the chicken cross the road?"  # Define the prompt to be tested
 
 # Run the evaluation
