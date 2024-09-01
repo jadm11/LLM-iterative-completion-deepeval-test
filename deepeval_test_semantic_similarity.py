@@ -15,7 +15,7 @@ warnings.simplefilter("ignore", category=RuntimeWarning)
 # Configure logging to record events, errors, and information to a log file with timestamps
 logging.basicConfig(
     filename="llm_evaluation.log",  # The log file where messages will be stored
-    level=logging.INFO,  # Log level set to INFO to capture general events and errors
+    level=logging.DEBUG,  # Log level set to INFO to capture general events and errors
     format="%(asctime)s - %(levelname)s - %(message)s"  # Include timestamp, log level, and message in each log entry
 )
 
@@ -54,20 +54,31 @@ def fetch_response(prompt, context):
         raise  # Re-raise the exception to halt execution if the response can't be fetched
 
 def semantic_similarity(actual_output, expected_outputs, threshold=0.4):
-    """Calculates semantic similarity between the actual output and expected outputs using embeddings."""
+    """Calculates semantic similarity between the actual output and expected outputs."""
     try:
-        # Convert the actual output and expected outputs into embeddings for similarity comparison
+        # Log the number of expected outputs and the actual expected outputs before encoding
+        logging.debug(f"Number of expected outputs: {len(expected_outputs)}")
+        logging.debug(f"Expected outputs before encoding: {expected_outputs}")
+        
+        # Encode the actual output and expected outputs into embeddings for comparison
         actual_embedding = embedding_model.encode(actual_output, convert_to_tensor=True)
         expected_embeddings = embedding_model.encode(expected_outputs, convert_to_tensor=True)
         
-        # Calculate cosine similarity scores between the actual output and each expected output
-        cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)
+        # Log the shape of the embeddings to verify their structure
+        logging.debug(f"Actual embedding shape: {actual_embedding.shape}")
+        logging.debug(f"Expected embeddings shape: {expected_embeddings.shape}")
         
-        # Return True if any similarity score meets or exceeds the threshold, and also return the cosine scores for reporting
+        # Compute cosine similarity scores between the actual output and each expected output
+        cosine_scores = util.pytorch_cos_sim(actual_embedding, expected_embeddings)
+
+        # Log the shape of the cosine scores tensor to ensure it matches expectations
+        logging.debug(f"Cosine scores tensor shape: {cosine_scores.shape}")
+
+        # Return True if any of the similarity scores meet or exceed the threshold, along with the scores for reporting
         return any(score >= threshold for score in cosine_scores[0]), cosine_scores
     except Exception as e:
-        logging.error(f"Error calculating semantic similarity: {e}")  # Log the error if similarity calculation fails
-        raise  # Re-raise the exception to halt execution if similarity can't be calculated
+        logging.error(f"Error calculating semantic similarity: {e}")
+        raise
 
 class CustomLLMEvaluation:
     """A class that combines LLMTestCase and SentenceTransformer for a comprehensive evaluation of LLM outputs."""
@@ -91,7 +102,6 @@ class CustomLLMEvaluation:
                 self.expected_responses = [
                     fetch_response(self.prompt, self.context),  # Fetch the first expected response dynamically
                     fetch_response(self.prompt, self.context),  # Fetch the second expected response dynamically
-                    fetch_response(self.prompt, self.context)   # Fetch the third expected response dynamically
                 ]
             else:
                 self.expected_responses = [
@@ -174,8 +184,8 @@ class CustomLLMEvaluation:
             raise  # Re-raise the exception to ensure any issues are properly flagged
 
 # Configuration settings for running the evaluation
-context = "Scientific"  # Set the context to guide the LLM's response
-use_dynamic_responses = False  # Disable dynamic generation of expected responses, using predefined ones instead
+context = "Cultural"  # Set the context to guide the LLM's response
+use_dynamic_responses = True  # Disable dynamic generation of expected responses, using predefined ones instead
 threshold = 0.5  # Set the similarity threshold for semantic similarity testing
 prompt = "Why did the chicken cross the road?"  # Define the prompt to be tested
 
