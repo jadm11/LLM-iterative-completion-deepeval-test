@@ -1,6 +1,7 @@
 # Generated from gherkin-o1-preview.feature
 # I had to change the code to make it work with the latest OpenAI Ruby 
 # Specifically, access_token was formerly generated as api_key in the client initialization
+# I ran out of time with the new model and couldn't get to js 
 
 require 'openai'
 require 'logger'

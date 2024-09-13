@@ -141,8 +141,8 @@ class CustomLLMEvaluation:
             raise
 
 # Configuration and Evaluation
-context = "Humor"
-use_dynamic_responses = True
+context = "Science"
+use_dynamic_responses = False
 threshold = 0.5
 prompt = "Why did the chicken cross the road?"
 
